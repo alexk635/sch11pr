@@ -4,12 +4,16 @@
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+    height: 100%;
 }
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #0b1120;
     color: #e4e8f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 .container {
     max-width: 1100px;
@@ -20,6 +24,7 @@ body {
     background: #060912;
     border-bottom: 1px solid #1c2740;
     padding: 18px 0;
+    flex: none;
 }
 .header-cont {
     display: flex;
@@ -33,6 +38,11 @@ body {
     font-size: clamp(20px, 3vw, 26px);
     font-weight: bold;
     letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.logo span:hover {
+    opacity: 0.8;
 }
 .search input {
     background: #131c2e;
@@ -49,12 +59,18 @@ body {
     border-color: #3ea6ff;
 }
 
-/* --- layout: сайдбар прижат к краю экрана, контент центрируется в остатке места --- */
+main {
+    flex: 1 1 auto;
+    display: flex;
+    min-height: 0;
+}
+
 .layout {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     width: 100%;
-    min-height: 70vh;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 .sidebar {
     flex: 0 0 260px;
@@ -65,8 +81,8 @@ body {
     padding: 25px 18px;
     position: sticky;
     top: 0;
-    align-self: flex-start;
-    min-height: 100vh;
+    align-self: stretch;
+    overflow-y: auto;
 }
 .sec-title {
     color: #3ea6ff;
@@ -119,6 +135,7 @@ body {
     min-width: 0;
     display: flex;
     justify-content: center;
+    align-items: stretch;
     padding: 40px 25px;
 }
 .content {
@@ -128,6 +145,16 @@ body {
     border-radius: 10px;
     padding: 35px;
     min-width: 0;
+}
+.content.content-wide {
+    max-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content.content-wide .home {
+    width: 100%;
 }
 .content h1 {
     margin-top: 0;
@@ -212,9 +239,9 @@ body {
     padding: 25px 0;
     text-align: center;
     color: #8b95a8;
+    flex: none;
 }
 
-/* --- адаптивность: несколько контрольных точек, чтобы верстка не рвалась --- */
 @media (max-width: 900px) {
     .sidebar {
         flex-basis: 210px;
@@ -269,4 +296,43 @@ body {
     margin: 25px auto 0;
     border-radius: 10px;
     border: 1px solid #1c2740;
+}
+
+.home {
+    text-align: center;
+    padding: 20px 0;
+}
+.home-title {
+    color: #3ea6ff;
+    font-size: clamp(30px, 6vw, 46px);
+    margin: 0 0 12px;
+}
+.home-sub {
+    color: #b7c0d4;
+    max-width: 480px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+}
+.home-search input {
+    background: #182339;
+    border: 1px solid #24304d;
+    color: #e4e8f0;
+    padding: 12px 18px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 420px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
+}
+.home-search input:focus {
+    border-color: #3ea6ff;
+}
+.home-results {
+    max-width: 460px;
+    margin: 20px auto 0;
+    text-align: left;
+}
+.home-results li {
+    list-style: none;
 }

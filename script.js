@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let content = document.getElementById("content");
     let searchInput = document.getElementById("searchInput");
     let currentId = null;
-    let currentSection = sections[0].name;
+    let currentSection = null;
 
     function getSectionNames() {
         let names = [];
@@ -290,6 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!sectionData) {
             return;
         }
+        content.classList.remove("content-wide");
         let sectionTopics = topics.filter(function (t) {
             return t.section === sectionName;
         });
@@ -353,6 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!topic) {
             return;
         }
+        content.classList.remove("content-wide");
 
         content.innerHTML =
             '<div class="breadcrumb">' + topic.section + '</div>' +
@@ -367,11 +369,65 @@ document.addEventListener("DOMContentLoaded", function () {
         checkImages();
     }
 
+    function renderHome() {
+        content.classList.add("content-wide");
+        content.innerHTML =
+            '<div class="home">' +
+            '<h1 class="home-title">Справочник</h1>' +
+            '<p class="home-sub">Простой конспект по школьной физике: разделы, формулы и понятные примеры для тех, кто только начинает разбираться в предмете.</p>' +
+            '<div class="home-search"><input type="text" id="homeSearchInput" placeholder="Найти тему..."></div>' +
+            '<ul class="home-results section-overview-list" id="homeResults"></ul>' +
+            '</div>';
+
+        let homeInput = document.getElementById("homeSearchInput");
+
+        function renderHomeResults(query) {
+            let homeResults = document.getElementById("homeResults");
+            homeResults.innerHTML = "";
+            let q = query.toLowerCase().trim();
+            if (q === "") {
+                return;
+            }
+            let matches = topics.filter(function (t) {
+                return t.title.toLowerCase().indexOf(q) !== -1;
+            });
+            if (matches.length === 0) {
+                homeResults.innerHTML = '<p class="no-result">Темы не найдены</p>';
+                return;
+            }
+            matches.forEach(function (t) {
+                let li = document.createElement("li");
+                li.innerHTML = "<h4>" + t.title + "</h4><p>" + t.short + "</p>";
+                li.addEventListener("click", function () {
+                    currentId = t.id;
+                    currentSection = t.section;
+                    renderContent(t.id);
+                    renderSidebar("");
+                });
+                homeResults.appendChild(li);
+            });
+        }
+
+        homeInput.addEventListener("input", function () {
+            renderHomeResults(homeInput.value);
+            searchInput.value = homeInput.value;
+            renderSidebar(homeInput.value);
+        });
+    }
+
     renderSidebar("");
-    renderSectionOverview(currentSection);
+    renderHome();
 
     searchInput.addEventListener("input", function () {
         renderSidebar(searchInput.value);
+    });
+
+    document.getElementById("logoBtn").addEventListener("click", function () {
+        currentId = null;
+        currentSection = null;
+        searchInput.value = "";
+        renderHome();
+        renderSidebar("");
     });
 
 });
