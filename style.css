@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
 }
-html, body {
+html {
     max-width: 100%;
     overflow-x: hidden;
     height: 100%;
@@ -79,10 +79,7 @@ main {
     background: #101728;
     border-right: 1px solid #1c2740;
     padding: 25px 18px;
-    position: sticky;
-    top: 0;
     align-self: stretch;
-    overflow-y: auto;
 }
 .sec-title {
     color: #3ea6ff;
@@ -145,6 +142,8 @@ main {
     border-radius: 10px;
     padding: 35px;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 .content.content-wide {
     max-width: 100%;
@@ -156,8 +155,8 @@ main {
 .content.content-wide .home {
     width: 100%;
 }
-.content h1 {
-    margin-top: 0;
+.content > h1 {
+    margin: 0 0 15px;
     font-size: clamp(22px, 4vw, 30px);
 }
 .content .breadcrumb {
@@ -167,7 +166,8 @@ main {
     letter-spacing: 0.5px;
     margin-bottom: 5px;
 }
-.content p {
+.content > p {
+    margin: 0 0 16px;
     color: #c3cadb;
     line-height: 1.7;
     overflow-wrap: break-word;
@@ -177,7 +177,7 @@ main {
     border-left: 3px solid #3ea6ff;
     padding: 14px 18px;
     border-radius: 6px;
-    margin: 20px 0;
+    margin: 0 0 20px;
     font-size: clamp(15px, 2.5vw, 18px);
     overflow-wrap: break-word;
 }
@@ -191,7 +191,7 @@ main {
     background: #182339;
     padding: 16px 18px;
     border-radius: 6px;
-    margin: 20px 0;
+    margin: 0 0 20px;
 }
 .example-box h3, .application-box h3 {
     margin-top: 0;
@@ -205,7 +205,7 @@ main {
 .section-overview-list {
     list-style: none;
     padding: 0;
-    margin: 20px 0 0;
+    margin: 0 0 20px;
 }
 .section-overview-list li {
     background: #182339;
@@ -241,6 +241,17 @@ main {
     color: #8b95a8;
     flex: none;
 }
+.footer .feedback {
+    margin: 8px 0 0;
+    font-size: 14px;
+}
+.footer .feedback a {
+    color: #3ea6ff;
+    text-decoration: none;
+}
+.footer .feedback a:hover {
+    text-decoration: underline;
+}
 
 @media (max-width: 900px) {
     .sidebar {
@@ -261,9 +272,6 @@ main {
         flex-direction: column;
     }
     .sidebar {
-        position: relative;
-        top: auto;
-        min-height: auto;
         max-width: 100%;
         flex-basis: auto;
         width: 100%;
@@ -293,7 +301,7 @@ main {
     width: 100%;
     max-width: 450px;
     display: block;
-    margin: 25px auto 0;
+    margin: 0 auto 20px;
     border-radius: 10px;
     border: 1px solid #1c2740;
 }
