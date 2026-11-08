@@ -563,6 +563,7 @@ document.addEventListener("DOMContentLoaded", function () {
         content.classList.add("content-wide");
         content.innerHTML =
             '<div class="home">' +
+            '<img class="home-logo" src="img/507_logo1.png" alt="Школа 507">' +
             '<h1 class="home-title">Справочник</h1>' +
             '<p class="home-sub">Простой конспект по школьной физике: разделы, формулы и понятные примеры для тех, кто только начинает разбираться в предмете.</p>' +
             '<div class="home-search"><input type="text" id="homeSearchInput" placeholder="Найти тему..."></div>' +
