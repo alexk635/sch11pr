@@ -21,6 +21,9 @@ body {
     padding: 0 20px;
 }
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     background: #ffffff;
     border-bottom: 1px solid #d9e3f2;
     padding: 18px 0;
@@ -80,7 +83,27 @@ main {
     background: #ffffff;
     border-right: 1px solid #d9e3f2;
     padding: 25px 18px;
-    align-self: stretch;
+    align-self: flex-start;
+    position: sticky;
+    top: var(--header-h, 70px);
+    height: calc(100vh - var(--header-h, 70px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #bfd0ec transparent;
+}
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: #bfd0ec;
+    border-radius: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #1f6fe0;
 }
 .sec-title {
     color: #1f6fe0;
@@ -133,7 +156,7 @@ main {
     min-width: 0;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: flex-start;
     padding: 40px 25px;
 }
 .content {
@@ -145,12 +168,12 @@ main {
     border-radius: 10px;
     padding: 35px;
     min-width: 0;
+    min-height: calc(100vh - var(--header-h, 70px) - 80px);
     display: flex;
     flex-direction: column;
 }
 .content.content-wide {
     max-width: 100%;
-    min-height: 100%;
 }
 .content.content-wide .home {
     width: 100%;
@@ -387,6 +410,13 @@ main {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid #d9e3f2;
+        position: static;
+        height: auto;
+        max-height: 40vh;
+        align-self: stretch;
+    }
+    .content {
+        min-height: 0;
     }
     .content-wrap {
         padding: 20px 15px;
