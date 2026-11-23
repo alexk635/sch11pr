@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Предметные разделы (нужны для картинок и подписи в теме)
+
     let subjects = [
         {
             name: "Механика",
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             name: "Давление жидкостей и газов",
-            image: "img/Давление жидкостей и газов.jpg",
+            image: "img/Давление и закон Паскаля.Давление жидкости.Сила Архимеда и плавание тел.jpg",
             intro: "Здесь разбираем, как давят твёрдые тела, жидкости и газы: почему острый нож режет лучше тупого, почему на глубине давление растёт и как корабли держатся на воде."
         },
         {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             name: "Колебания и волны",
-            image: "img/Колебания и волны.jpg",
+            image: "img/Колебания.jpg",
             intro: "Колебания и волны — это всё, что качается и распространяется: маятники, звук, радио и свет. Раздел объясняет, чем отличаются период и частота, как считать скорость волны и как работает колебательный контур."
         },
         {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    // Классы — основное деление справочника
+    
     let sections = [
         { name: "7 класс", intro: "Первое знакомство с физикой: измерения и единицы, движение, силы, плотность, давление, закон Архимеда, работа, мощность и простые механизмы." },
         { name: "8 класс", intro: "Тепловые явления (нагревание, плавление, сгорание топлива, КПД двигателей), электрический ток (закон Ома, сопротивление, соединение проводников, работа и мощность тока) и световые явления (отражение, преломление, линзы, глаз и очки)." },
@@ -751,7 +751,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    // В каком классе изучается тема. Чтобы перенести тему в другой класс, поменяйте здесь одну строку.
+
     let topicGrades = {
         "izmereniya": "7 класс", "kinematika": "7 класс", "plotnost": "7 класс", "sily": "7 класс",
         "rabota": "7 класс", "mekhanizmy": "7 класс", "davlenie": "7 класс", "gidrostatika": "7 класс",
@@ -774,17 +774,444 @@ document.addEventListener("DOMContentLoaded", function () {
         "difraktsiya": "11 класс", "fotoeffekt": "11 класс", "lorenc": "11 класс"
     };
     topics.forEach(function (t) {
-        t.subject = t.section;                 // предметный раздел (Механика, Оптика ...)
-        t.section = topicGrades[t.id];         // класс
+        t.subject = t.section;               
+        t.section = topicGrades[t.id];         
     });
+
+
+    let tests = {
+        "7 класс": {
+            tasks: [
+                {"type": "choice", "text": "Какая из перечисленных единиц является единицей давления?", "options": ["Ньютон", "Паскаль", "Ватт", "Джоуль"], "answer": 1, "solution": "Давление измеряют в паскалях: 1 Па = 1 Н/м². Ньютон — единица силы, ватт — мощности, джоуль — работы.", "topics": ["davlenie"], "points": 1},
+                {"type": "number", "text": "Между штрихами 20 мл и 30 мл на шкале мензурки нанесено 5 делений. Чему равна цена деления?", "unit": "мл", "answer": 2, "solution": "Цена деления C = (30 − 20) / 5 = 2 мл.", "topics": ["izmereniya"], "points": 2},
+                {"type": "number", "text": "Масса бруска 2,7 кг, его объём 1000 см³. Найдите плотность вещества, из которого он сделан.", "unit": "кг/м³", "answer": 2700, "solution": "Переводим объём: 1000 см³ = 0,001 м³. Плотность ρ = m / V = 2,7 / 0,001 = 2700 кг/м³.", "topics": ["plotnost", "izmereniya"], "points": 2},
+                {"type": "number", "text": "Тело объёмом 3 дм³ полностью погружено в воду (плотность воды 1000 кг/м³). Найдите выталкивающую силу. Примите g = 10 Н/кг.", "unit": "Н", "answer": 30, "solution": "3 дм³ = 0,003 м³. Fарх = ρ·g·V = 1000 · 10 · 0,003 = 30 Н.", "topics": ["arkhimed"], "points": 2},
+                {"type": "choice", "text": "В каком состоянии вещество сохраняет и форму, и объём?", "options": ["Только в твёрдом", "Только в жидком", "Только в газообразном", "В жидком и газообразном"], "answer": 0, "solution": "Твёрдое тело сохраняет и форму, и объём. Жидкость сохраняет объём, но принимает форму сосуда, а газ занимает весь предоставленный объём.", "topics": ["stroenie"], "points": 1},
+                {"type": "choice", "text": "В два стакана — с холодной и с горячей водой — одновременно капнули по капле чернил. В каком стакане вода окрасится быстрее и почему?", "options": ["В стакане с холодной водой, так как скорость движения молекул там больше", "В стакане с горячей водой, так как скорость движения молекул там больше", "В стакане с горячей водой, так как скорость движения молекул там меньше", "Одинаково быстро, так как температура не влияет на диффузию"], "answer": 1, "solution": "С ростом температуры молекулы движутся быстрее, поэтому диффузия в горячей воде идёт быстрее.", "topics": ["stroenie"], "points": 1},
+                {"type": "number", "text": "Найдите давление керосина (плотность 800 кг/м³) на дне бака на глубине 2,5 м. Примите g = 10 Н/кг.", "unit": "Па", "answer": 20000, "solution": "p = ρ·g·h = 800 · 10 · 2,5 = 20 000 Па.", "topics": ["gidrostatika"], "points": 2},
+                {"type": "number", "text": "Ящик перемещают на 150 см, действуя на него силой 60 Н в направлении движения. Найдите совершённую работу.", "unit": "Дж", "answer": 90, "solution": "150 см = 1,5 м. A = F·s = 60 · 1,5 = 90 Дж.", "topics": ["rabota", "izmereniya"], "points": 2},
+                {"type": "number", "text": "Подъёмный кран равномерно поднимает груз массой 500 кг на высоту 12 м за 20 с. Найдите мощность крана. Примите g = 10 Н/кг.", "unit": "Вт", "answer": 3000, "solution": "Работа A = m·g·h = 500 · 10 · 12 = 60 000 Дж. Мощность N = A / t = 60 000 / 20 = 3000 Вт.", "topics": ["rabota"], "points": 2},
+                {"type": "choice", "text": "Рычаг даёт выигрыш в силе в 4 раза. Какой выигрыш в работе он даёт при отсутствии трения?", "options": ["Выигрыш в 4 раза", "Проигрыш в 4 раза", "Не даёт ни выигрыша, ни проигрыша", "Выигрыш в 2 раза"], "answer": 2, "solution": "«Золотое правило» механики: выигрывая в силе, мы во столько же раз проигрываем в расстоянии, поэтому выигрыша в работе нет.", "topics": ["mekhanizmy"], "points": 1},
+                {"type": "number", "text": "Какого веса груз можно поднять с помощью подвижного блока, прикладывая к свободному концу верёвки силу 150 Н? Трение не учитывайте.", "unit": "Н", "answer": 300, "solution": "Подвижный блок даёт выигрыш в силе в 2 раза: P = 2F = 2 · 150 = 300 Н.", "topics": ["mekhanizmy"], "points": 2},
+                {"type": "choice", "text": "Как изменяется осадка корабля при переходе из моря в реку?", "options": ["Увеличивается", "Уменьшается", "Не изменяется", "Сначала уменьшается, потом увеличивается"], "answer": 0, "solution": "Плотность речной воды меньше, чем морской. Чтобы сила Архимеда по-прежнему равнялась силе тяжести, корабль должен вытеснить больший объём воды, поэтому осадка увеличивается.", "topics": ["arkhimed"], "points": 1}
+            ]
+        },
+        "8 класс": {
+            tasks: [
+                {"type": "choice", "text": "Внутреннюю энергию тела можно изменить:", "options": ["только при теплопередаче", "только при совершении механической работы", "и при совершении работы, и при теплопередаче", "внутреннюю энергию изменить нельзя"], "answer": 2, "solution": "Внутреннюю энергию меняют двумя способами: совершением работы (трение, удар, сжатие) и теплопередачей.", "topics": ["vnutrenyaya"], "points": 1},
+                {"type": "choice", "text": "Как называется количество теплоты, необходимое для плавления 1 кг кристаллического вещества, нагретого до температуры плавления?", "options": ["удельная теплоёмкость", "удельная теплота сгорания", "удельная теплота плавления", "удельная теплота парообразования"], "answer": 2, "solution": "Это определение удельной теплоты плавления λ.", "topics": ["plavlenie"], "points": 1},
+                {"type": "number", "text": "Какое количество теплоты необходимо, чтобы нагреть 2 кг воды от 20 °C до 70 °C? Удельная теплоёмкость воды 4200 Дж/(кг·°C).", "unit": "кДж", "answer": 420, "solution": "Q = c·m·Δt = 4200 · 2 · (70 − 20) = 420 000 Дж = 420 кДж.", "topics": ["nagrev"], "points": 2},
+                {"type": "number", "text": "При полном сгорании 0,5 кг топлива выделилось 22 МДж энергии. Найдите удельную теплоту сгорания топлива.", "unit": "МДж/кг", "answer": 44, "solution": "q = Q / m = 22 / 0,5 = 44 МДж/кг.", "topics": ["toplivo"], "points": 2},
+                {"type": "number", "text": "Тепловой двигатель получил от нагревателя 800 кДж энергии и совершил полезную работу 200 кДж. Найдите КПД двигателя.", "unit": "%", "answer": 25, "solution": "η = Aполезная / Q · 100% = 200 / 800 · 100% = 25%.", "topics": ["kpd"], "points": 2},
+                {"type": "choice", "text": "Длину проводника увеличили в 3 раза, не меняя материал и площадь сечения. Как изменилось его сопротивление?", "options": ["увеличилось в 3 раза", "уменьшилось в 3 раза", "увеличилось в 9 раз", "не изменилось"], "answer": 0, "solution": "Сопротивление R = ρ·l / S прямо пропорционально длине, поэтому при увеличении l в 3 раза R увеличивается в 3 раза.", "topics": ["soprotivlenie"], "points": 1},
+                {"type": "number", "text": "Найдите силу тока в медном проводнике длиной 50 м и площадью сечения 2,5 мм² при напряжении на его концах 0,17 В. Удельное сопротивление меди 0,017 Ом·мм²/м.", "unit": "А", "answer": 0.5, "solution": "R = ρ·l / S = 0,017 · 50 / 2,5 = 0,34 Ом. По закону Ома I = U / R = 0,17 / 0,34 = 0,5 А.", "topics": ["soprotivlenie", "om"], "points": 2},
+                {"type": "number", "text": "Лампа включена в сеть с напряжением 220 В, сила тока в ней 0,5 А. Найдите работу тока за 10 минут.", "unit": "кДж", "answer": 66, "solution": "t = 10 мин = 600 с. A = U·I·t = 220 · 0,5 · 600 = 66 000 Дж = 66 кДж.", "topics": ["moshnost"], "points": 2},
+                {"type": "match", "text": "Установите соответствие между измерительными приборами и физическими величинами, которые с их помощью измеряют.", "rows": ["А) амперметр", "Б) вольтметр", "В) омметр"], "options": ["1) сопротивление", "2) сила тока", "3) напряжение", "4) мощность"], "answer": [1, 2, 0], "solution": "Амперметр измеряет силу тока, вольтметр — напряжение, омметр — сопротивление. Правильный ответ: А — 2, Б — 3, В — 1.", "topics": ["om"], "points": 2},
+                {"type": "choice", "text": "Какое изображение получается на сетчатке глаза человека?", "options": ["увеличенное, действительное, перевёрнутое", "уменьшенное, действительное, перевёрнутое", "увеличенное, мнимое, прямое", "уменьшенное, мнимое, прямое"], "answer": 1, "solution": "Хрусталик работает как собирающая линза и строит на сетчатке уменьшенное действительное перевёрнутое изображение.", "topics": ["glaz"], "points": 1},
+                {"type": "number", "text": "Два резистора сопротивлениями 6 Ом и 3 Ом соединены параллельно. Найдите общее сопротивление.", "unit": "Ом", "answer": 2, "solution": "R = R₁·R₂ / (R₁ + R₂) = 6 · 3 / 9 = 2 Ом.", "topics": ["soedinenie"], "points": 2},
+                {"type": "number", "text": "Сколько энергии нужно, чтобы расплавить кусок льда массой 2 кг, взятый при 0 °C, и нагреть полученную воду до 20 °C? Удельная теплота плавления льда 330 кДж/кг, удельная теплоёмкость воды 4200 Дж/(кг·°C).", "unit": "кДж", "answer": 828, "solution": "Плавление: Q₁ = λ·m = 330 000 · 2 = 660 000 Дж. Нагревание воды: Q₂ = c·m·Δt = 4200 · 2 · 20 = 168 000 Дж. Всего Q = 828 000 Дж = 828 кДж.", "topics": ["plavlenie", "nagrev"], "points": 2}
+            ]
+        },
+        "9 класс": {
+            tasks: [
+                {"type": "number", "text": "За какое время автомобиль, двигаясь из состояния покоя с ускорением 0,5 м/с², пройдёт путь 25 м?", "unit": "с", "answer": 10, "solution": "Из s = a·t² / 2 получаем t = √(2s / a) = √(2 · 25 / 0,5) = √100 = 10 с.", "topics": ["ravnouskorennoe"], "points": 2},
+                {"type": "number", "text": "Движение материальной точки задано уравнением x = 5 + 12t + 0,6t² (все величины в СИ). Найдите начальную скорость точки.", "unit": "м/с", "answer": 12, "solution": "В уравнении x = x₀ + v₀·t + a·t² / 2 коэффициент при t — это начальная скорость: v₀ = 12 м/с.", "topics": ["ravnouskorennoe"], "points": 2},
+                {"type": "number", "text": "С каким ускорением разгонялся самолёт массой 50 т, если сила тяги его двигателей равна 100 кН? Сопротивление не учитывайте.", "unit": "м/с²", "answer": 2, "solution": "По второму закону Ньютона a = F / m = 100 000 / 50 000 = 2 м/с².", "topics": ["dinamika"], "points": 2},
+                {"type": "number", "text": "Чему равно изменение импульса тела, если на него действовала сила 20 Н в течение 0,3 с?", "unit": "кг·м/с", "answer": 6, "solution": "Δp = F·Δt = 20 · 0,3 = 6 кг·м/с.", "topics": ["stolknoveniya"], "points": 2},
+                {"type": "number", "text": "Платформа массой 10 т, движущаяся со скоростью 3 м/с, сцепляется с неподвижной платформой массой 20 т. Найдите скорость их совместного движения.", "unit": "м/с", "answer": 1, "solution": "Закон сохранения импульса при неупругом ударе: m₁v₁ = (m₁ + m₂)·u, откуда u = 10 000 · 3 / 30 000 = 1 м/с.", "topics": ["stolknoveniya", "impuls"], "points": 2},
+                {"type": "choice", "text": "Около движущегося отрицательно заряженного шарика обнаруживается:", "options": ["только электрическое поле", "электрическое и магнитное поля", "только магнитное поле", "никакого поля"], "answer": 1, "solution": "Любой заряд создаёт электрическое поле, а движущийся заряд (электрический ток) создаёт ещё и магнитное поле.", "topics": ["magnitnoe"], "points": 1},
+                {"type": "number", "text": "Скорость звука в воде 1500 м/с. Найдите длину звуковой волны, частота которой 500 Гц.", "unit": "м", "answer": 3, "solution": "Из v = λ·ν получаем λ = v / ν = 1500 / 500 = 3 м.", "topics": ["volny"], "points": 2},
+                {"type": "number", "text": "Какая сила действует на проводник длиной 0,4 м с током 10 А, расположенный перпендикулярно линиям индукции однородного магнитного поля с индукцией 0,5 Тл?", "unit": "Н", "answer": 2, "solution": "Сила Ампера F = B·I·l·sin 90° = 0,5 · 10 · 0,4 = 2 Н.", "topics": ["magnitnoe"], "points": 2},
+                {"type": "choice", "text": "Какое ядро образуется из ядра радия ²²⁶₈₈Ra в результате α-распада?", "options": ["²²²₈₆Rn", "²²⁶₈₉Ac", "²²²₈₈Ra", "²²⁶₈₆Rn"], "answer": 0, "solution": "При α-распаде массовое число уменьшается на 4 (226 → 222), а зарядовое — на 2 (88 → 86). Элемент с Z = 86 — радон.", "topics": ["reaktsii"], "points": 1},
+                {"type": "number", "text": "Найдите энергию кванта излучения с частотой 5·10¹⁴ Гц. Постоянная Планка 6,63·10⁻³⁴ Дж·с. Ответ дайте в единицах 10⁻¹⁹ Дж.", "unit": "·10⁻¹⁹ Дж", "answer": 3.3, "solution": "E = h·ν = 6,63·10⁻³⁴ · 5·10¹⁴ ≈ 3,3·10⁻¹⁹ Дж.", "topics": ["foton"], "points": 2},
+                {"type": "number", "text": "Автомобиль массой 1 т проезжает вершину выпуклого моста радиусом 50 м со скоростью 36 км/ч. С какой силой он давит на мост в его верхней точке? Примите g = 10 м/с².", "unit": "Н", "answer": 8000, "solution": "36 км/ч = 10 м/с. P = m·(g − v² / R) = 1000 · (10 − 100 / 50) = 1000 · 8 = 8000 Н.", "topics": ["okruzhnost"], "points": 2},
+                {"type": "number", "text": "Найдите энергию связи ядра дейтерия ²₁H. Масса протона 1,00728 а.е.м., нейтрона 1,00866 а.е.м., ядра дейтерия 2,01355 а.е.м. Считайте, что 1 а.е.м. соответствует 931,5 МэВ.", "unit": "МэВ", "answer": 2.2, "solution": "Дефект масс Δm = 1,00728 + 1,00866 − 2,01355 = 0,00239 а.е.м. Eсв = 0,00239 · 931,5 ≈ 2,2 МэВ.", "topics": ["svyaz"], "points": 2}
+            ]
+        },
+        "10 класс": {
+            tasks: [
+                {"type": "number", "text": "Тело начинает двигаться из состояния покоя с ускорением 2 м/с². Какой путь оно пройдёт за первые 5 с?", "unit": "м", "answer": 25, "solution": "s = a·t² / 2 = 2 · 25 / 2 = 25 м.", "topics": ["ravnouskorennoe"], "points": 2},
+                {"type": "number", "text": "Брусок массой 4 кг скользит по горизонтальной поверхности, коэффициент трения 0,2. Найдите силу трения. Примите g = 10 Н/кг.", "unit": "Н", "answer": 8, "solution": "N = m·g = 40 Н, Fтр = μ·N = 0,2 · 40 = 8 Н.", "topics": ["trenie"], "points": 2},
+                {"type": "choice", "text": "Ящик массой 20 кг стоит на горизонтальном полу (коэффициент трения 0,4). Его толкают горизонтальной силой 60 Н, но он не сдвигается с места. Чему равна сила трения? Примите g = 10 Н/кг.", "options": ["0 Н", "60 Н", "80 Н", "8 Н"], "answer": 1, "solution": "Максимальная сила трения покоя μ·N = 0,4 · 200 = 80 Н больше приложенной силы, поэтому ящик покоится, и сила трения покоя равна приложенной силе — 60 Н.", "topics": ["trenie"], "points": 1},
+                {"type": "number", "text": "Газ получил 500 Дж теплоты, а его внутренняя энергия увеличилась на 200 Дж. Какую работу совершил газ?", "unit": "Дж", "answer": 300, "solution": "Первый закон термодинамики: Q = ΔU + A, откуда A = Q − ΔU = 500 − 200 = 300 Дж.", "topics": ["termo1"], "points": 2},
+                {"type": "number", "text": "Над газом внешние силы совершили работу 400 Дж, при этом газ отдал окружающей среде 100 Дж теплоты. На сколько джоулей изменилась внутренняя энергия газа? Если энергия увеличилась, ответ положительный.", "unit": "Дж", "answer": 300, "solution": "ΔU = Q + A′, где Q = −100 Дж (газ отдал тепло), A′ = 400 Дж (работа внешних сил): ΔU = −100 + 400 = +300 Дж. Энергия увеличилась.", "topics": ["termo1"], "points": 2},
+                {"type": "choice", "text": "Как изменится сила взаимодействия двух точечных зарядов, если расстояние между ними увеличить в 3 раза?", "options": ["увеличится в 3 раза", "уменьшится в 3 раза", "уменьшится в 9 раз", "увеличится в 9 раз"], "answer": 2, "solution": "По закону Кулона F ~ 1 / r². При увеличении r в 3 раза сила уменьшается в 3² = 9 раз.", "topics": ["kulon"], "points": 1},
+                {"type": "number", "text": "Два одинаковых резистора по 6 Ом соединены параллельно, а последовательно с ними включён резистор 5 Ом. Найдите общее сопротивление цепи.", "unit": "Ом", "answer": 8, "solution": "Параллельный участок: 6 / 2 = 3 Ом. Последовательно с резистором 5 Ом: R = 3 + 5 = 8 Ом.", "topics": ["soedinenie"], "points": 2},
+                {"type": "number", "text": "К источнику с ЭДС 9 В и внутренним сопротивлением 1 Ом подключён резистор сопротивлением 2 Ом. Найдите силу тока в цепи.", "unit": "А", "answer": 3, "solution": "I = ε / (R + r) = 9 / (2 + 1) = 3 А.", "topics": ["polnaya"], "points": 2},
+                {"type": "choice", "text": "Сравните объёмы, которые занимают 2 моль азота и 2 моль гелия при одинаковых давлении и температуре.", "options": ["объём азота больше", "объём гелия больше", "объёмы одинаковы", "зависит от массы газов"], "answer": 2, "solution": "Из уравнения p·V = ν·R·T следует V = ν·R·T / p: при одинаковых ν, T и p объём не зависит от рода газа.", "topics": ["mkt"], "points": 1},
+                {"type": "number", "text": "Камень брошен вертикально вверх со скоростью 20 м/с. Найдите максимальную высоту подъёма. Сопротивление воздуха не учитывайте, g = 10 м/с².", "unit": "м", "answer": 20, "solution": "hmax = v₀² / (2g) = 400 / 20 = 20 м.", "topics": ["svobodnoe"], "points": 2},
+                {"type": "number", "text": "Идеальный газ в количестве 2 моль занимает объём 0,0166 м³ при температуре 300 К. Найдите давление газа. R = 8,31 Дж/(моль·К).", "unit": "кПа", "answer": 300, "solution": "Из p·V = ν·R·T: p = ν·R·T / V = 2 · 8,31 · 300 / 0,0166 ≈ 300 000 Па = 300 кПа.", "topics": ["mkt"], "points": 2},
+                {"type": "match", "text": "Камень бросили вертикально вверх. Как меняются при его подъёме (сопротивление воздуха не учитывать) следующие величины?", "rows": ["А) скорость камня", "Б) ускорение камня", "В) потенциальная энергия камня"], "options": ["1) увеличивается", "2) уменьшается", "3) не изменяется"], "answer": [1, 2, 0], "solution": "Скорость при подъёме уменьшается, ускорение равно g и не меняется, потенциальная энергия растёт с высотой. Правильный ответ: А — 2, Б — 3, В — 1.", "topics": ["svobodnoe", "energiya"], "points": 2}
+            ]
+        },
+        "11 класс": {
+            tasks: [
+                {"type": "choice", "text": "Протон влетает в однородное магнитное поле вдоль линий магнитной индукции. Как он будет двигаться?", "options": ["по окружности", "по спирали", "равномерно и прямолинейно", "равноускоренно"], "answer": 2, "solution": "Сила Лоренца F = q·v·B·sin α. Если скорость направлена вдоль линий, sin α = 0, сила равна нулю, и протон движется равномерно и прямолинейно.", "topics": ["lorenc"], "points": 1},
+                {"type": "number", "text": "Работа выхода электронов из металла 2,0 эВ. На металл падает свет, энергия фотонов которого 5,0 эВ. Каким должно быть задерживающее напряжение, чтобы остановить фотоэлектроны?", "unit": "В", "answer": 3, "solution": "Eк = hν − A = 5,0 − 2,0 = 3,0 эВ. Задерживающее напряжение определяется условием e·U = Eк, поэтому U = 3 В.", "topics": ["fotoeffekt"], "points": 2},
+                {"type": "number", "text": "Работа выхода электронов из металла 3,1 эВ. Найдите красную границу фотоэффекта (наибольшую длину волны). Считайте h·c = 1240 эВ·нм.", "unit": "нм", "answer": 400, "solution": "A = h·c / λкр, откуда λкр = h·c / A = 1240 / 3,1 = 400 нм.", "topics": ["fotoeffekt", "foton"], "points": 2},
+                {"type": "number", "text": "Найдите период колебаний математического маятника длиной 2,5 м. Примите g = 10 м/с², π = 3,14.", "unit": "с", "answer": 3.14, "solution": "T = 2π·√(l / g) = 2π·√(2,5 / 10) = 2π · 0,5 = π ≈ 3,14 с.", "topics": ["mayatnik"], "points": 2},
+                {"type": "choice", "text": "Длину нити математического маятника увеличили в 4 раза. Как изменился период его колебаний?", "options": ["увеличился в 2 раза", "увеличился в 4 раза", "уменьшился в 2 раза", "не изменился"], "answer": 0, "solution": "T = 2π·√(l / g), поэтому T пропорционален √l. При увеличении l в 4 раза период увеличивается в √4 = 2 раза.", "topics": ["mayatnik"], "points": 1},
+                {"type": "number", "text": "Колебательный контур состоит из катушки индуктивностью 0,1 мГн и конденсатора ёмкостью 1 нФ. Найдите период электромагнитных колебаний.", "unit": "мкс", "answer": 1.99, "solution": "T = 2π·√(L·C) = 2π·√(10⁻⁴ · 10⁻⁹) ≈ 1,99·10⁻⁶ с ≈ 2 мкс.", "topics": ["emvolny"], "points": 2},
+                {"type": "number", "text": "Человек стоит перед плоским зеркалом. Зеркало отодвинули от человека на 0,3 м. На сколько метров увеличилось расстояние между человеком и его изображением?", "unit": "м", "answer": 0.6, "solution": "Изображение находится за зеркалом на таком же расстоянии, как и предмет перед ним, поэтому при смещении зеркала на 0,3 м расстояние до изображения меняется на 2 · 0,3 = 0,6 м.", "topics": ["otrazhenie"], "points": 2},
+                {"type": "number", "text": "Предмет находится на расстоянии 30 см от тонкой собирающей линзы с фокусным расстоянием 10 см. На каком расстоянии от линзы получится изображение?", "unit": "см", "answer": 15, "solution": "1 / f = 1 / F − 1 / d = 1 / 10 − 1 / 30 = 2 / 30, откуда f = 15 см.", "topics": ["linzy"], "points": 2},
+                {"type": "number", "text": "Дальнозоркий человек ясно видит книгу, только если она находится на расстоянии не менее 40 см от глаз. Какой оптической силы очки ему нужны, чтобы читать на расстоянии наилучшего зрения 25 см?", "unit": "дптр", "answer": 1.5, "solution": "D = 1 / d₀ − 1 / d = 1 / 0,25 − 1 / 0,4 = 4 − 2,5 = 1,5 дптр (очки собирающие).", "topics": ["glaz"], "points": 2},
+                {"type": "number", "text": "Дифракционная решётка имеет 100 штрихов на 1 мм и освещается светом с длиной волны 600 нм. Каков наибольший порядок максимума, который можно наблюдать?", "unit": "", "answer": 16, "solution": "Период решётки d = 1 мм / 100 = 10 мкм. Из d·sin φ = k·λ при sin φ ≤ 1: k ≤ d / λ = 10 / 0,6 ≈ 16,7, значит наибольший порядок k = 16.", "topics": ["difraktsiya"], "points": 2, "tol": 0},
+                {"type": "number", "text": "Период полураспада радиоактивного изотопа равен 2 суткам. Сколько из 800 ядер останется нераспавшимися через 6 суток?", "unit": "ядер", "answer": 100, "solution": "6 суток — это 3 периода полураспада. N = N₀ · 2⁻³ = 800 / 8 = 100 ядер.", "topics": ["reaktsii"], "points": 2, "tol": 0},
+                {"type": "number", "text": "Луч света падает под углом 45° на плоскопараллельную стеклянную пластинку толщиной 2 см. Показатель преломления стекла √2 ≈ 1,41. На какое расстояние сместится вышедший из пластинки луч?", "unit": "см", "answer": 0.6, "solution": "sin β = sin 45° / n = 0,707 / 1,41 = 0,5, β = 30°. Смещение x = d·sin(α − β) / cos β = 2 · sin 15° / cos 30° ≈ 2 · 0,259 / 0,866 ≈ 0,6 см.", "topics": ["plastinka"], "points": 2}
+            ]
+        }
+    };
 
     let sidebar = document.getElementById("sidebar");
     let content = document.getElementById("content");
     let searchInput = document.getElementById("searchInput");
     let currentId = null;
     let currentSection = null;
+    let currentTest = null;
 
-    // ---------- навигация: история переходов + кнопки Назад / На главную / Вперёд ----------
+    let testState = {};
+    let LETTERS = ["А", "Б", "В", "Г", "Д"];
+
+    function esc(value) {
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+    }
+
+    function fmtNum(x) {
+        return String(x).replace(".", ",");
+    }
+
+    function pointsText(n) {
+        if (n === 1) {
+            return "1 балл";
+        }
+        return n + (n < 5 ? " балла" : " баллов");
+    }
+
+    function parseNumber(value) {
+        if (value === null || value === undefined) {
+            return NaN;
+        }
+        let cleaned = String(value).replace(/\s+/g, "").replace(",", ".");
+        if (!/^[-+]?\d/.test(cleaned)) {
+            return NaN;
+        }
+        return parseFloat(cleaned);
+    }
+
+    function getTestState(grade) {
+        if (!testState[grade]) {
+            let n = tests[grade].tasks.length;
+            let answers = [];
+            let confirmed = [];
+            for (let i = 0; i < n; i++) {
+                answers.push(null);
+                confirmed.push(false);
+            }
+            testState[grade] = { answers: answers, confirmed: confirmed, finished: false, result: null };
+        }
+        return testState[grade];
+    }
+
+    function maxPoints(test) {
+        let sum = 0;
+        test.tasks.forEach(function (t) {
+            sum += t.points;
+        });
+        return sum;
+    }
+
+    function hasAnswer(task, ans) {
+        if (task.type === "choice") {
+            return typeof ans === "number";
+        }
+        if (task.type === "number") {
+            return !isNaN(parseNumber(ans));
+        }
+        return Array.isArray(ans) && ans.length === task.rows.length && ans.every(function (x) {
+            return x >= 0;
+        });
+    }
+
+    function isCorrect(task, ans) {
+        if (!hasAnswer(task, ans)) {
+            return false;
+        }
+        if (task.type === "choice") {
+            return ans === task.answer;
+        }
+        if (task.type === "number") {
+            let tol = task.tol !== undefined ? task.tol : 0.03;
+            return Math.abs(parseNumber(ans) - task.answer) <= Math.abs(task.answer) * tol + 1e-9;
+        }
+        return task.answer.every(function (x, k) {
+            return ans[k] === x;
+        });
+    }
+
+    function answerText(task, ans, isRight) {
+        if (task.type === "choice") {
+            return typeof ans === "number" ? LETTERS[ans] + ") " + task.options[ans] : "ответ не дан";
+        }
+        if (task.type === "number") {
+            if (isRight) {
+                return fmtNum(task.answer) + (task.unit ? " " + task.unit : "");
+            }
+            return hasAnswer(task, ans) ? String(ans).trim() + (task.unit ? " " + task.unit : "") : "ответ не дан";
+        }
+        if (!hasAnswer(task, ans)) {
+            return "ответ не дан";
+        }
+        return task.rows.map(function (row, k) {
+            return row.charAt(0) + " — " + (ans[k] + 1);
+        }).join(", ");
+    }
+
+    function gradeMark(percent) {
+        if (percent >= 85) {
+            return 5;
+        }
+        if (percent >= 65) {
+            return 4;
+        }
+        if (percent >= 45) {
+            return 3;
+        }
+        return 2;
+    }
+
+    function evaluateTest(grade) {
+        let test = tests[grade];
+        let state = getTestState(grade);
+        let points = 0;
+        let correct = 0;
+        let mistakes = [];
+        test.tasks.forEach(function (task, i) {
+            let answered = state.confirmed[i];
+            if (answered && isCorrect(task, state.answers[i])) {
+                points += task.points;
+                correct++;
+            } else {
+                mistakes.push({ i: i, answered: answered });
+            }
+        });
+        let max = maxPoints(test);
+        let percent = Math.round(points / max * 100);
+        return { points: points, max: max, correct: correct, total: test.tasks.length, percent: percent, mark: gradeMark(percent), mistakes: mistakes };
+    }
+
+    function taskHtml(task, i, state) {
+        let ans = state.answers[i];
+        let body = "";
+        if (task.type === "choice") {
+            task.options.forEach(function (opt, k) {
+                body +=
+                    '<label class="test-option"><input type="radio" name="task' + i + '" value="' + k + '"' +
+                    (ans === k ? " checked" : "") + '><span>' + LETTERS[k] + ') ' + esc(opt) + '</span></label>';
+            });
+        } else if (task.type === "number") {
+            body +=
+                '<div class="test-number"><input type="text" inputmode="decimal" autocomplete="off" class="test-input" placeholder="Ваш ответ" value="' +
+                esc(ans === null ? "" : ans) + '">' +
+                (task.unit ? '<span class="test-unit">' + esc(task.unit) + '</span>' : '') + '</div>';
+        } else {
+            body += '<ul class="test-match-options">';
+            task.options.forEach(function (o) {
+                body += '<li>' + esc(o) + '</li>';
+            });
+            body += '</ul>';
+            task.rows.forEach(function (row, k) {
+                let selected = Array.isArray(ans) ? ans[k] : -1;
+                let opts = '<option value="-1">—</option>';
+                task.options.forEach(function (o, m) {
+                    opts += '<option value="' + m + '"' + (selected === m ? " selected" : "") + '>' + (m + 1) + '</option>';
+                });
+                body +=
+                    '<div class="test-match-row"><span class="test-match-label">' + esc(row) +
+                    '</span><select class="test-select">' + opts + '</select></div>';
+            });
+        }
+        return (
+            '<div class="test-task" data-i="' + i + '">' +
+            '<div class="test-task-head">Задание ' + (i + 1) + ' <span class="test-points">' + pointsText(task.points) + '</span></div>' +
+            '<p class="test-text">' + esc(task.text) + '</p>' +
+            body +
+            '<div class="test-task-actions"><button class="example-btn test-confirm">Подтвердить</button>' +
+            '<span class="test-status"></span></div>' +
+            '</div>'
+        );
+    }
+
+    function renderTest(grade) {
+        let test = tests[grade];
+        let state = getTestState(grade);
+        content.classList.remove("content-wide");
+        if (state.finished) {
+            renderTestResult(grade);
+            return;
+        }
+
+        let html =
+            '<div class="breadcrumb">' + grade + '</div>' +
+            '<h1>Контрольная работа</h1>' +
+            '<p>Заданий: ' + test.tasks.length + ', максимум — ' + pointsText(maxPoints(test)) + '. ' +
+            'Введите или выберите ответ и нажмите «Подтвердить». Правильные ответы и разбор ошибок появятся после нажатия «Завершить». ' +
+            'В числовых ответах пишите только число (дробную часть можно через запятую или точку); единицы уже указаны рядом с полем.</p>' +
+            '<p class="test-scale">Оценка «5» — от 85% баллов, «4» — от 65%, «3» — от 45%.</p>';
+        test.tasks.forEach(function (task, i) {
+            html += taskHtml(task, i, state);
+        });
+        html +=
+            '<div class="test-finish"><button class="example-btn test-finish-btn" id="finishTestBtn">Завершить</button></div>' +
+            navBarHtml(false);
+        content.innerHTML = html;
+        bindNav();
+
+        content.querySelectorAll(".test-task").forEach(function (el) {
+            let i = Number(el.getAttribute("data-i"));
+            let task = test.tasks[i];
+            let btn = el.querySelector(".test-confirm");
+            let status = el.querySelector(".test-status");
+
+            function setLocked(locked) {
+                el.querySelectorAll("input, select").forEach(function (x) {
+                    x.disabled = locked;
+                });
+                btn.textContent = locked ? "Изменить" : "Подтвердить";
+                el.classList.toggle("confirmed", locked);
+                status.textContent = locked ? "✓ Ответ принят" : "";
+                status.className = "test-status" + (locked ? " ok" : "");
+            }
+
+            if (task.type === "choice") {
+                el.querySelectorAll("input[type=radio]").forEach(function (r) {
+                    r.addEventListener("change", function () {
+                        state.answers[i] = Number(r.value);
+                    });
+                });
+            } else if (task.type === "number") {
+                el.querySelector(".test-input").addEventListener("input", function (e) {
+                    state.answers[i] = e.target.value;
+                });
+            } else {
+                el.querySelectorAll("select").forEach(function (sel) {
+                    sel.addEventListener("change", function () {
+                        state.answers[i] = Array.prototype.map.call(el.querySelectorAll("select"), function (x) {
+                            return Number(x.value);
+                        });
+                    });
+                });
+            }
+
+            btn.addEventListener("click", function () {
+                if (state.confirmed[i]) {
+                    state.confirmed[i] = false;
+                    setLocked(false);
+                    return;
+                }
+                if (!hasAnswer(task, state.answers[i])) {
+                    status.textContent = "Сначала введите ответ";
+                    status.className = "test-status err";
+                    return;
+                }
+                state.confirmed[i] = true;
+                setLocked(true);
+            });
+
+            setLocked(state.confirmed[i]);
+        });
+
+        document.getElementById("finishTestBtn").addEventListener("click", function () {
+            let notConfirmed = state.confirmed.filter(function (c) {
+                return !c;
+            }).length;
+            if (notConfirmed > 0) {
+                let ok = window.confirm(
+                    "Не подтверждено заданий: " + notConfirmed + ". Они будут засчитаны как невыполненные. Завершить контрольную?"
+                );
+                if (!ok) {
+                    return;
+                }
+            }
+            state.finished = true;
+            state.result = evaluateTest(grade);
+            renderTestResult(grade);
+            window.scrollTo(0, 0);
+        });
+    }
+
+    function renderTestResult(grade) {
+        let test = tests[grade];
+        let state = getTestState(grade);
+        let res = state.result || evaluateTest(grade);
+        content.classList.remove("content-wide");
+
+        let html =
+            '<div class="breadcrumb">' + grade + ' · Контрольная работа</div>' +
+            '<h1>Результаты</h1>' +
+            '<div class="test-summary mark-' + res.mark + '">' +
+            '<div class="test-summary-item"><span>Баллы</span><b>' + res.points + ' из ' + res.max + '</b></div>' +
+            '<div class="test-summary-item"><span>Верных заданий</span><b>' + res.correct + ' из ' + res.total + '</b></div>' +
+            '<div class="test-summary-item"><span>Выполнено</span><b>' + res.percent + '%</b></div>' +
+            '<div class="test-summary-item test-mark"><span>Оценка</span><b>' + res.mark + '</b></div>' +
+            '</div>' +
+            '<p class="test-scale">Оценка «5» — от 85% баллов, «4» — от 65%, «3» — от 45%.</p>';
+
+        if (res.mistakes.length === 0) {
+            html += '<div class="application-box"><h3>Ошибок нет</h3><p>Все задания выполнены верно. Отличная работа!</p></div>';
+        } else {
+            html += '<h3 class="block-title">Задания с ошибками</h3>';
+            let topicIds = [];
+            res.mistakes.forEach(function (m) {
+                let task = test.tasks[m.i];
+                html +=
+                    '<div class="test-mistake">' +
+                    '<div class="test-task-head">Задание ' + (m.i + 1) + '</div>' +
+                    '<p class="test-text">' + esc(task.text) + '</p>' +
+                    '<p class="test-your"><b>Ваш ответ:</b> ' + esc(m.answered ? answerText(task, state.answers[m.i], false) : "не подтверждён") + '</p>' +
+                    '<p class="test-right"><b>Правильный ответ:</b> ' + esc(answerText(task, task.answer, true)) + '</p>' +
+                    '<p class="test-sol"><b>Решение:</b> ' + esc(task.solution) + '</p>' +
+                    '</div>';
+                task.topics.forEach(function (id) {
+                    if (topicIds.indexOf(id) === -1) {
+                        topicIds.push(id);
+                    }
+                });
+            });
+            html += '<h3 class="block-title">Какие темы повторить</h3><div class="test-topics">';
+            topicIds.forEach(function (id) {
+                let t = topics.find(function (x) {
+                    return x.id === id;
+                });
+                if (t) {
+                    html += '<button class="test-topic-chip" data-topic="' + t.id + '">' + esc(t.title) + ' <small>' + t.section + '</small></button>';
+                }
+            });
+            html += '</div>';
+        }
+
+        html +=
+            '<div class="test-finish"><button class="example-btn" id="retryTestBtn">Пройти заново</button></div>' +
+            navBarHtml(false);
+        content.innerHTML = html;
+        bindNav();
+
+        content.querySelectorAll(".test-topic-chip").forEach(function (chip) {
+            chip.addEventListener("click", function () {
+                navigate({ type: "topic", id: chip.getAttribute("data-topic") });
+            });
+        });
+        document.getElementById("retryTestBtn").addEventListener("click", function () {
+            delete testState[grade];
+            renderTest(grade);
+            window.scrollTo(0, 0);
+        });
+    }
+
+
     let navStack = [];
     let navPos = -1;
 
@@ -793,6 +1220,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showView(view) {
+        currentTest = null;
         if (view.type === "home") {
             currentId = null;
             currentSection = null;
@@ -803,6 +1231,12 @@ document.addEventListener("DOMContentLoaded", function () {
             currentId = null;
             currentSection = view.name;
             renderSectionOverview(view.name);
+            renderSidebar(searchInput.value);
+        } else if (view.type === "test") {
+            currentId = null;
+            currentSection = view.name;
+            currentTest = view.name;
+            renderTest(view.name);
             renderSidebar(searchInput.value);
         } else if (view.type === "topic") {
             let topic = topics.find(function (t) {
@@ -836,7 +1270,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Порядок страниц: раздел -> его темы -> следующий раздел -> его темы ...
+
+
     function getSequence() {
         let seq = [];
         sections.forEach(function (sec) {
@@ -846,6 +1281,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     seq.push({ type: "topic", id: t.id });
                 }
             });
+            if (tests[sec.name]) {
+                seq.push({ type: "test", name: sec.name });
+            }
         });
         return seq;
     }
@@ -931,7 +1369,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let secTitle = document.createElement("div");
             secTitle.className = "sec-title";
-            if (sectionName === currentSection && currentId === null) {
+            if (sectionName === currentSection && currentId === null && currentTest === null) {
                 secTitle.classList.add("active-sec");
             }
             secTitle.textContent = sectionName;
@@ -954,6 +1392,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 list.appendChild(li);
             });
+
+            if (query === "" && tests[sectionName]) {
+                let testLi = document.createElement("li");
+                testLi.className = "test-item";
+                testLi.textContent = "Контрольная работа";
+                if (currentTest === sectionName) {
+                    testLi.classList.add("active");
+                }
+                testLi.addEventListener("click", function () {
+                    navigate({ type: "test", name: sectionName });
+                });
+                list.appendChild(testLi);
+            }
 
             sidebar.appendChild(list);
         });
@@ -984,6 +1435,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 '<li data-id="' + t.id + '"><h4>' + t.title + '</h4><p>' + t.subject + ' — ' + t.short + '</p></li>';
         });
 
+        if (tests[sectionName]) {
+            listHtml +=
+                '<li class="test-overview-item" data-test="' + sectionName + '"><h4>Контрольная работа</h4><p>' +
+                tests[sectionName].tasks.length + ' заданий — проверьте себя по темам этого класса</p></li>';
+        }
+
         content.innerHTML =
             '<div class="breadcrumb">Класс</div>' +
             '<h1>' + sectionData.name + '</h1>' +
@@ -998,7 +1455,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let items = content.querySelectorAll(".section-overview-list li");
         items.forEach(function (li) {
             li.addEventListener("click", function () {
-                navigate({ type: "topic", id: li.getAttribute("data-id") });
+                if (li.getAttribute("data-test")) {
+                    navigate({ type: "test", name: li.getAttribute("data-test") });
+                } else {
+                    navigate({ type: "topic", id: li.getAttribute("data-id") });
+                }
             });
         });
     }
@@ -1146,7 +1607,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // высота шапки нужна CSS, чтобы колонка с темами занимала ровно оставшуюся часть экрана
+
+
     function updateHeaderHeight() {
         let header = document.querySelector(".header");
         if (header) {

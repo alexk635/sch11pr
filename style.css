@@ -68,7 +68,7 @@ main {
     min-height: 0;
 }
 
-/* --- layout: сайдбар прижат к краю экрана, контент центрируется в остатке места --- */
+
 .layout {
     display: flex;
     align-items: stretch;
@@ -107,7 +107,8 @@ main {
 }
 .sec-title {
     color: #1f6fe0;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 800;
     margin: 18px 0 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -225,7 +226,7 @@ main {
     margin: 0 0 20px;
 }
 
-/* --- акцент на формулах --- */
+
 .formula-box.formula-main {
     font-size: clamp(20px, 3.5vw, 28px);
     padding: 22px 24px;
@@ -385,7 +386,7 @@ main {
     text-decoration: underline;
 }
 
-/* --- адаптивность: несколько контрольных точек, чтобы верстка не рвалась --- */
+
 @media (max-width: 900px) {
     .sidebar {
         flex-basis: 210px;
@@ -497,7 +498,7 @@ main {
     color: #ffffff;
 }
 
-/* --- инструмент "Подбор формулы" --- */
+
 .finder-checks {
     display: flex;
     flex-wrap: wrap;
@@ -574,7 +575,7 @@ main {
     font-weight: bold;
 }
 
-/* --- кнопки навигации (внизу карточки, по центру) --- */
+
 .nav-bar {
     display: flex;
     justify-content: center;
@@ -639,7 +640,7 @@ main {
     }
 }
 
-/* --- логотип школы --- */
+
 .logo span {
     display: inline-flex;
     align-items: center;
@@ -655,4 +656,238 @@ main {
     width: clamp(100px, 22vw, 150px);
     height: auto;
     margin: 0 auto 14px;
+}
+
+.topic-list li.test-item {
+    margin-top: 6px;
+    color: #1f6fe0;
+    font-weight: bold;
+}
+.topic-list li.test-item:hover {
+    background: #e8f0fd;
+    color: #1f6fe0;
+}
+.topic-list li.test-item.active {
+    background: #1f6fe0;
+    color: #ffffff;
+}
+.section-overview-list li.test-overview-item h4 {
+    color: #1f6fe0;
+}
+
+.test-scale {
+    color: #6b7a96;
+    font-size: 13px;
+}
+.test-task, .test-mistake {
+    background: #f1f6fd;
+    border: 1px solid #d9e3f2;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+}
+.test-task.confirmed {
+    border-color: #1f6fe0;
+}
+.test-task-head {
+    color: #1f6fe0;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin: 0 0 8px;
+}
+.test-points {
+    color: #6b7a96;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 6px;
+}
+.test-text {
+    margin: 0 0 12px;
+    line-height: 1.6;
+    color: #1b2a44;
+    overflow-wrap: break-word;
+}
+.test-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    margin: 0 0 6px;
+    background: #ffffff;
+    border: 1px solid #d9e3f2;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.45;
+    color: #3a4a66;
+}
+.test-option input {
+    accent-color: #1f6fe0;
+    margin-top: 3px;
+    flex: none;
+}
+.test-number {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.test-input, .test-select {
+    font-family: inherit;
+    font-size: 15px;
+    color: #1b2a44;
+    background: #ffffff;
+    border: 1px solid #c9d8f0;
+    border-radius: 6px;
+    padding: 9px 12px;
+    outline: none;
+}
+.test-input {
+    width: 100%;
+    max-width: 200px;
+}
+.test-input:focus, .test-select:focus {
+    border-color: #1f6fe0;
+}
+.test-input:disabled, .test-select:disabled {
+    background: #e8f0fd;
+    color: #3a4a66;
+}
+.test-unit {
+    color: #6b7a96;
+    font-size: 14px;
+}
+.test-match-options {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #d9e3f2;
+    border-radius: 6px;
+    color: #3a4a66;
+    line-height: 1.7;
+}
+.test-match-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 0 8px;
+}
+.test-match-label {
+    min-width: 150px;
+    color: #1b2a44;
+}
+.test-task-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 12px;
+}
+.test-confirm {
+    padding: 9px 18px;
+}
+.test-status {
+    font-size: 14px;
+    font-weight: bold;
+}
+.test-status.ok {
+    color: #1a8f4c;
+}
+.test-status.err {
+    color: #d33a3a;
+}
+.test-finish {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0 0;
+}
+.test-finish-btn {
+    padding: 13px 34px;
+    font-size: 15px;
+}
+
+.test-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 0 12px;
+}
+.test-summary-item {
+    flex: 1 1 130px;
+    background: #f1f6fd;
+    border: 1px solid #d9e3f2;
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+}
+.test-summary-item span {
+    display: block;
+    color: #6b7a96;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+.test-summary-item b {
+    font-size: 22px;
+    color: #1b2a44;
+}
+.test-summary-item.test-mark b {
+    font-size: 34px;
+    color: #1f6fe0;
+}
+.test-summary.mark-5 .test-mark b { color: #1a8f4c; }
+.test-summary.mark-4 .test-mark b { color: #1f6fe0; }
+.test-summary.mark-3 .test-mark b { color: #c98a00; }
+.test-summary.mark-2 .test-mark b { color: #d33a3a; }
+
+.test-mistake {
+    border-left: 4px solid #d33a3a;
+}
+.test-mistake p {
+    margin: 0 0 8px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+}
+.test-your { color: #d33a3a; }
+.test-right { color: #1a8f4c; }
+.test-sol { color: #3a4a66; }
+.test-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 8px;
+}
+.test-topic-chip {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1f6fe0;
+    background: #eaf1fd;
+    border: 1px solid #c9d8f0;
+    border-radius: 20px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+.test-topic-chip small {
+    font-weight: normal;
+    color: #6b7a96;
+    margin-left: 4px;
+}
+.test-topic-chip:hover {
+    background: #1f6fe0;
+    border-color: #1f6fe0;
+    color: #ffffff;
+}
+.test-topic-chip:hover small {
+    color: #dce9fc;
+}
+@media (max-width: 420px) {
+    .test-task, .test-mistake { padding: 14px; }
+    .test-match-label { min-width: 0; flex: 1 1 100%; }
 }
