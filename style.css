@@ -213,7 +213,7 @@ main {
     font-size: clamp(15px, 2.5vw, 18px);
     overflow-wrap: break-word;
 }
-.formula-box span {
+.formula-box .formula-note {
     display: block;
     color: #6b7a96;
     font-size: 13px;
@@ -658,6 +658,7 @@ main {
     margin: 0 auto 14px;
 }
 
+
 .topic-list li.test-item {
     margin-top: 6px;
     color: #1f6fe0;
@@ -890,4 +891,25 @@ main {
 @media (max-width: 420px) {
     .test-task, .test-mistake { padding: 14px; }
     .test-match-label { min-width: 0; flex: 1 1 100%; }
+}
+
+.vec {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    font-style: normal;
+}
+.vec::before {
+    content: "→";
+    position: absolute;
+    left: 50%;
+    top: -0.62em;
+    transform: translateX(-50%);
+    font-size: 0.62em;
+    line-height: 1;
+    font-weight: normal;
+}
+.formula-box sup, .variant-formula sup {
+    font-size: 0.7em;
+    line-height: 0;
 }
